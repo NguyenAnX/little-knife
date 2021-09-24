@@ -1,0 +1,10 @@
+{
+    "dev": {
+      "host": "localhost",
+      "user": "root",
+      "password" : "",
+      "database": "little_knife",
+      "driver": "mysql",
+      "multipleStatements": true
+    }
+  }
