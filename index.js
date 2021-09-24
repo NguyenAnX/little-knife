@@ -1,12 +1,6 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import {
-  GraphQLObjectType,
-  GraphQLInt,
-  GraphQLString,
-  GraphQLBoolean,
-  GraphQLSchema,
-} from "graphql";
+import { GraphQLObjectType, GraphQLSchema } from "graphql";
 import cors from "cors";
 import { mutationFields } from "./graphql/fields/mutations.js";
 import { queryFields } from "./graphql/fields/queries.js";
@@ -22,7 +16,8 @@ const rootMutation = new GraphQLObjectType({
 });
 
 const schema = new GraphQLSchema({ query: rootQuery, mutation: rootMutation });
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+
 var app = express();
 app.use(cors({ origin: "*" }));
 app.use(
@@ -34,7 +29,5 @@ app.use(
 );
 
 app.listen(PORT, () => {
-  console.log(
-    `Running a GraphQL API server at http://localhost:${PORT}/graphql`
-  );
+  console.log(`Running a GraphQL API server on port ${PORT}`);
 });
